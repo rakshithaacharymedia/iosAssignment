@@ -79,8 +79,20 @@
                                     <action selector="buttontwitter:" destination="g2J-81-HhM" eventType="touchUpInside" id="JOr-AQ-WRy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gx8-Ew-B3d">
+                                <rect key="frame" x="142.5" y="248" width="90" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="whatsapp"/>
+                                <connections>
+                                    <action selector="buttonWhatsapp:" destination="g2J-81-HhM" eventType="touchUpInside" id="lti-5t-hFL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.91398453712463379" green="0.81327605247497559" blue="0.49995511770248413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gx8-Ew-B3d" firstAttribute="centerX" secondItem="yRZ-h0-M8v" secondAttribute="centerX" id="hta-Ob-SdM"/>
+                            <constraint firstItem="gx8-Ew-B3d" firstAttribute="top" secondItem="A7z-aI-Rk5" secondAttribute="top" constant="228" id="nLz-Wk-Rzw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="A7z-aI-Rk5"/>
                     </view>
                 </viewController>

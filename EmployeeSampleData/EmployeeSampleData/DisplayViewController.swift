@@ -12,7 +12,8 @@ import  CoreData
 class DisplayViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var profileArray = [String]()
     var showdata = false
-    var selectedempName:String?
+  
+    var id:Int?
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,19 +64,20 @@ class DisplayViewController: UIViewController,UITableViewDataSource,UITableViewD
         return 20
     }
     func fetch(){
+        
         print("inside fetch")
         let context = managedObjectContext()
-        print(selectedempName as Any)
-        let pred = NSPredicate(format: "name == %@ ",selectedempName! )
+        print(id ?? "no")
+        let pred = NSPredicate(format: "empId == %d ",id! )
         let request = NSFetchRequest<Employee>(entityName: "Employee")
         request.predicate = pred
-   do {
-    profileArray.removeAll()
+     do {
+        profileArray.removeAll()
         let obj = try context.fetch(request)
        
             profileArray.append(String(obj[0].empId))
-        profileArray.append(obj[0].name!)
-        profileArray.append(obj[0].address!)
+           profileArray.append(obj[0].name!)
+            profileArray.append(obj[0].address!)
             profileArray.append(String(obj[0].salary))
             print(profileArray)
             tableview.isHidden=false

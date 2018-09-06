@@ -9,11 +9,13 @@
 import UIKit
 import  CoreData
 
-class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
+class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate{
 
+    @IBOutlet weak var userEnteredName: UITextField!
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var userEnteredid: UITextField!
     var profileArray = [String]()
+    var employeeArray=[Employee1]()
     var showdata = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,7 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
         // Dispose of any resources that can be recreated.
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return employeeArray.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -35,13 +37,13 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell=tableView.dequeueReusableCell(withIdentifier: "searchcell", for: indexPath) as! SearchDisplayTableViewCell
-        if profileArray.count != 0
-        {
-            cell.idlabel.text=profileArray[0]
-            cell.namelabel.text=profileArray[1]
-            cell.addresslabel.text=profileArray[2]
-            cell.salarylabel.text=profileArray[3]
-        }
+       
+    
+            cell.idlabel.text=String(employeeArray[indexPath.row].id)
+            cell.namelabel.text=employeeArray[indexPath.row].name
+            cell.addresslabel.text=employeeArray[indexPath.row].address
+            cell.salarylabel.text=String(employeeArray[indexPath.row].salary)
+        
         cell.backgroundColor=UIColor.black
         return cell
     }
@@ -71,6 +73,11 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+       // print("Im here")
+        tableview.isHidden=true
+    }
+
     func displayalert(myTitle:String,myMessage:String)
     {
         
@@ -82,39 +89,59 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
     }
 
     @IBAction func searchButtonClicked(_ sender: Any) {
+        employeeArray.removeAll()
+        var id:Int16?
+        id=Int16((self.userEnteredid.text! as NSString).integerValue)
+        var userName:String?
+        userName=userEnteredName.text
         let context = managedObjectContext()
-        let userEnteredEmpid = Int16((self.userEnteredid.text! as NSString).integerValue)
-        let pred = NSPredicate(format: "empId == %d ", userEnteredEmpid)
+        var pred:NSPredicate?
+        
+        if id != 0, let idforpredicate = id {
+            pred = NSPredicate(format: "empId == %d ", idforpredicate)
+            print(idforpredicate)
+        } else {
+             if let nameforpredicate = userName
+            {
+               pred = NSPredicate(format: "name == %@ ", nameforpredicate)
+                print(nameforpredicate)
+            }
+            else
+            {
+                displayalert(myTitle: "Error", myMessage: "Field Mising")
+            }
+        }
         let request = NSFetchRequest<Employee>(entityName: "Employee")
         request.predicate = pred
         do {
-            if (userEnteredid.text?.isEmpty)!
-            {
-                displayalert(myTitle: "Error", myMessage: "Field Mising")
-            }else{
-            let obj = try context.fetch(request)
-            if obj.count != 0
-           {
-            profileArray.append(String(obj[0].empId))
-            profileArray.append(obj[0].name!)
-            profileArray.append(obj[0].address!)
-            profileArray.append(String(obj[0].salary))
-            print(profileArray)
-            tableview.isHidden=false
-            tableview.reloadData()
-            showdata=true
-        }
-            else
-           {
-            displayalert(myTitle: "Alert", myMessage: "Please Register")
+                
+                let obj = try context.fetch(request)
+             if obj.count != 0
+                {
+                for item in obj
+                {
+                    employeeArray.append(Employee1(id:Int(item.empId),name:item.name!,address:item.address!,salary:Int(item.salary)))
+                   
+                }
+                
+                 self.tableview.isHidden=false
+                 self.tableview.reloadData()
+                 self.showdata=true
             }
+            else
+                {
+                    displayalert(myTitle: "Failed", myMessage: "No Details Found")
+            }
+          
         }
-       }
+       
+    
         catch {
             displayalert(myTitle: "Error", myMessage: "Failed To Search")
             
         }
     }
+    
     
     func managedObjectContext() -> NSManagedObjectContext {
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext

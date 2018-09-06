@@ -13,6 +13,7 @@
 		AC3BF476214002D40094185A /* SearchforEmpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF475214002D40094185A /* SearchforEmpViewController.swift */; };
 		AC3BF4782140053B0094185A /* SearchDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF4772140053B0094185A /* SearchDisplayTableViewCell.swift */; };
 		AC3BF47A21400F5D0094185A /* DeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF47921400F5D0094185A /* DeleteViewController.swift */; };
+		AC3BF47E2140F33E0094185A /* Employee1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF47D2140F33E0094185A /* Employee1.swift */; };
 		AC929B4D213FAFA800B36FC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC929B4C213FAFA800B36FC3 /* AppDelegate.swift */; };
 		AC929B4F213FAFA800B36FC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC929B4E213FAFA800B36FC3 /* ViewController.swift */; };
 		AC929B52213FAFA800B36FC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC929B50213FAFA800B36FC3 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		AC3BF475214002D40094185A /* SearchforEmpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchforEmpViewController.swift; sourceTree = "<group>"; };
 		AC3BF4772140053B0094185A /* SearchDisplayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		AC3BF47921400F5D0094185A /* DeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteViewController.swift; sourceTree = "<group>"; };
+		AC3BF47D2140F33E0094185A /* Employee1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee1.swift; sourceTree = "<group>"; };
 		AC929B49213FAFA800B36FC3 /* EmployeeSampleData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeSampleData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC929B4C213FAFA800B36FC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC929B4E213FAFA800B36FC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				AC929B58213FAFA900B36FC3 /* LaunchScreen.storyboard */,
 				AC929B5B213FAFA900B36FC3 /* Info.plist */,
 				AC929B53213FAFA800B36FC3 /* EmployeeSampleData.xcdatamodeld */,
+				AC3BF47D2140F33E0094185A /* Employee1.swift */,
 			);
 			path = EmployeeSampleData;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				AC929B77213FBD1100B36FC3 /* AddViewController.swift in Sources */,
 				AC3BF47A21400F5D0094185A /* DeleteViewController.swift in Sources */,
 				AC929B4D213FAFA800B36FC3 /* AppDelegate.swift in Sources */,
+				AC3BF47E2140F33E0094185A /* Employee1.swift in Sources */,
 				AC929B55213FAFA800B36FC3 /* EmployeeSampleData.xcdatamodeld in Sources */,
 				AC929B79213FBD1100B36FC3 /* ViewControllerTableViewCell.swift in Sources */,
 				AC3BF476214002D40094185A /* SearchforEmpViewController.swift in Sources */,

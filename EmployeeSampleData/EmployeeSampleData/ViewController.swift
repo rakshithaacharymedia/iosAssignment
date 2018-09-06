@@ -11,6 +11,8 @@ import CoreData
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var empname:Array<String>=[]
+    var empid:Array<Int>=[]
+    var employeeDetails=[String : Int]()
     var showdata=false
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var mytable: UITableView!
@@ -21,12 +23,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         tableview.isHidden=true
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     override func viewDidDisappear(_ animated: Bool) {
         tableview.isHidden=true
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,6 +41,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
         let cell=tableView.dequeueReusableCell(withIdentifier: "viewcell", for: indexPath) as! ViewControllerTableViewCell
         cell.mylabel?.text=empname[indexPath.row]
+        
         
         return cell
     }
@@ -61,9 +66,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc=storyboard?.instantiateViewController(withIdentifier: "DisplayViewController") as! DisplayViewController
-      vc.selectedempName=empname[indexPath.row]
-    navigationController?.pushViewController(vc, animated: true)
+     let vc=storyboard?.instantiateViewController(withIdentifier: "DisplayViewController") as! DisplayViewController
+        vc.id = empid[indexPath.row]
+        print(indexPath.row)
+        //vc.id = Array(employeeDetails)[indexPath.row].value
+        navigationController?.pushViewController(vc, animated: true)
         
     }
    
@@ -74,6 +81,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
    
     @IBAction func fetchButtonClicked(_ sender: Any) {
+        empid.removeAll()
+        empname.removeAll()
         let context = managedObjectContext()
         let request = NSFetchRequest<Employee>(entityName: "Employee")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -83,10 +92,15 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             print(obj.count)
             for emp in obj {
                 empname.append(emp.name!)
+                self.empid.append(Int(emp.empId))
+                employeeDetails=[emp.name! : Int(emp.empId)]
                 tableview.isHidden=false
                 showdata=true
                 tableview.reloadData()
                 }
+            print(self.empid)
+            print(employeeDetails)
+            print(Array(employeeDetails)[0].value)
          obj.removeAll()
             
         }

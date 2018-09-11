@@ -10,11 +10,13 @@ import UIKit
 
 class DisplayTableViewCell: UITableViewCell {
 
- 
+    @IBOutlet weak var depLabel: UILabel!
+    
     @IBOutlet weak var salarylabel: UILabel!
     @IBOutlet weak var addresslabel: UILabel!
     @IBOutlet weak var namelabel: UILabel!
     @IBOutlet weak var idlabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

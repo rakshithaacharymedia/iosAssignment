@@ -9,20 +9,30 @@
 import UIKit
 import  CoreData
 
-class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate{
+class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UISearchBarDelegate{
 
-    @IBOutlet weak var userEnteredName: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
+       
+        
+    
+    @IBOutlet weak var searchById: UISearchBar!
+   
     @IBOutlet weak var tableview: UITableView!
-    @IBOutlet weak var userEnteredid: UITextField!
+   
     var profileArray = [String]()
     var employeeArray=[Employee1]()
     var showdata = false
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.backgroundColor=UIColor.black
-        self.userEnteredid.becomeFirstResponder()
+      
         tableview.isHidden=true
-        // Do any additional setup after loading the view.
+       searchById.delegate=self
+        
+        searchBar.showsScopeBar=true
+        searchBar.scopeButtonTitles=["Name","Empid"]
+        searchBar.selectedScopeButtonIndex=0
+    
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,11 +48,12 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell=tableView.dequeueReusableCell(withIdentifier: "searchcell", for: indexPath) as! SearchDisplayTableViewCell
        
-    
+        
             cell.idlabel.text=String(employeeArray[indexPath.row].id)
             cell.namelabel.text=employeeArray[indexPath.row].name
             cell.addresslabel.text=employeeArray[indexPath.row].address
             cell.salarylabel.text=String(employeeArray[indexPath.row].salary)
+            cell.depLabel.text = employeeArray[indexPath.row].depname
         
         cell.backgroundColor=UIColor.black
         return cell
@@ -73,11 +84,7 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-       // print("Im here")
-        tableview.isHidden=true
-    }
-
+ 
     func displayalert(myTitle:String,myMessage:String)
     {
         
@@ -85,70 +92,70 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         print(myTitle)
-        userEnteredid.text=""
+        
     }
 
-    @IBAction func searchButtonClicked(_ sender: Any) {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+      //  let text:String?
+        search(text: searchText,index:searchBar.selectedScopeButtonIndex)
+        
+     
+        
+    }
+    
+    func managedObjectContext() -> NSManagedObjectContext {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    }
+    
+    func search(text:String,index:Int)
+    {
         employeeArray.removeAll()
-        var id:Int16?
-        id=Int16((self.userEnteredid.text! as NSString).integerValue)
-        var userName:String?
-        userName=userEnteredName.text
+       
         let context = managedObjectContext()
         var pred:NSPredicate?
+        if text != nil{
+            
         
-        if id != 0, let idforpredicate = id {
-            pred = NSPredicate(format: "empId == %d ", idforpredicate)
-            print(idforpredicate)
-        } else {
-             if let nameforpredicate = userName
-            {
-               pred = NSPredicate(format: "name == %@ ", nameforpredicate)
-                print(nameforpredicate)
-            }
-            else
-            {
-                displayalert(myTitle: "Error", myMessage: "Field Mising")
-            }
+        switch index{
+       
+        case 1:
+            pred = NSPredicate(format: " empId == %d ",Int16(text)!)
+        default:
+            pred = NSPredicate(format: "name contains[c] %@ ",text)
+
+        }
+       
         }
         let request = NSFetchRequest<Employee>(entityName: "Employee")
         request.predicate = pred
         do {
-                
-                let obj = try context.fetch(request)
-             if obj.count != 0
-                {
+            
+            let obj = try context.fetch(request)
+            if obj.count != 0
+            {
                 for item in obj
                 {
-                    employeeArray.append(Employee1(id:Int(item.empId),name:item.name!,address:item.address!,salary:Int(item.salary)))
-                   
+                    employeeArray.append(Employee1(id:Int(item.empId),name:item.name!,address:item.address!,salary:Int(item.salary),depName:(item.worksFor?.depName!)!))
+                    
                 }
+                self.tableview.reloadData()
+                self.tableview.isHidden=false
                 
-                 self.tableview.isHidden=false
-                 self.tableview.reloadData()
-                 self.showdata=true
-            }
-            else
-                {
-                    displayalert(myTitle: "Failed", myMessage: "No Details Found")
             }
           
+            
         }
-       
-    
+            
+            
         catch {
             displayalert(myTitle: "Error", myMessage: "Failed To Search")
             
         }
     }
-    
-    
-    func managedObjectContext() -> NSManagedObjectContext {
-        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    }
 }
-        
-        
-    
-    
+
+
+
+
 

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+ 
     var empname:Array<String>=[]
     var empid:Array<Int>=[]
     var employeeDetails=[String : Int]()
@@ -19,10 +20,18 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("f")
+//        let dict1 = ["id":"1","name":"ios"]
+//        DepartmentDataBase.dep.add(object: dict1)
+//        let dict2 = ["id": "2","name":"android"]
+//       DepartmentDataBase.dep.add(object: dict2)
         tableview.backgroundColor=UIColor.black
         tableview.isHidden=true
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        reloadTableView()
+       
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -80,13 +89,15 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
     }
    
-    @IBAction func fetchButtonClicked(_ sender: Any) {
+
+    func reloadTableView()
+    {
         empid.removeAll()
         empname.removeAll()
         let context = managedObjectContext()
         let request = NSFetchRequest<Employee>(entityName: "Employee")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-      
+        
         do {
             var obj = try context.fetch(request)
             print(obj.count)
@@ -97,17 +108,16 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 tableview.isHidden=false
                 showdata=true
                 tableview.reloadData()
-                }
+            }
             print(self.empid)
             print(employeeDetails)
-            print(Array(employeeDetails)[0].value)
-         obj.removeAll()
+//            print(Array(employeeDetails)[0].value)
+            obj.removeAll()
             
         }
         catch {
             
         }
-        
     }
 
     
@@ -118,4 +128,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
 }
 
+//class ViewController: UISearchBarDelegate {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        tablev
+//    }
+//    
+//}
 

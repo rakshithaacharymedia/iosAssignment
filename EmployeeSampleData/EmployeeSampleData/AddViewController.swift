@@ -11,11 +11,14 @@ import CoreData
 
 class AddViewController: UIViewController {
 
+    
     @IBOutlet weak var empsalary: UITextField!
+    @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var empaddress: UITextField!
     @IBOutlet weak var empname: UITextField!
     @IBOutlet weak var empid: UITextField!
-    
+     let item = ["ios","android"]
+    var selectedDep:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.empid.becomeFirstResponder()
@@ -44,20 +47,27 @@ class AddViewController: UIViewController {
     @IBAction func insertButtonClicked(_ sender: Any) {
         let context = managedObjectContext()
         let entity = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
+        
+
         entity.name = empname.text
         entity.empId = Int16((self.empid.text! as NSString).integerValue)
         entity.salary = Int16((empsalary.text! as NSString).integerValue)
         entity.address = empaddress.text
+ 
+        
+      entity.worksFor = DepartmentDataBase.dep.getid(depname: selectedDep!)
         do {
             if (empname.text?.isEmpty)! || empid.text?.count==0 || empsalary.text?.count==0 || (empaddress.text?.isEmpty)!{
                 displayalert(myTitle: "Error", myMessage: "Fields Missing")
+                
             }
             
             else
             {
               try context.save()
-            //print("added")
+               print("added")
                 displayalert(myTitle: "Success", myMessage: "User Registered")
+                print(entity)
         }
    }
         catch  {
@@ -75,4 +85,23 @@ class AddViewController: UIViewController {
     }
 
 
+
+extension AddViewController: UIPickerViewDelegate,UIPickerViewDataSource{
+   
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+        
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return item[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return item.count
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedDep = item[row]
+    }
+}
 

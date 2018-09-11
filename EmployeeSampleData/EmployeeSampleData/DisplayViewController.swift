@@ -12,7 +12,7 @@ import  CoreData
 class DisplayViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var profileArray = [String]()
     var showdata = false
-  
+    
     var id:Int?
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class DisplayViewController: UIViewController,UITableViewDataSource,UITableViewD
         return 1
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 300
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -39,6 +39,7 @@ class DisplayViewController: UIViewController,UITableViewDataSource,UITableViewD
         cell.namelabel.text=profileArray[1]
         cell.addresslabel.text=profileArray[2]
         cell.salarylabel.text=profileArray[3]
+       cell.depLabel.text = profileArray[4]
        cell.backgroundColor=UIColor.black
 //        cell.layer.borderWidth = 2
 //        cell.layer.cornerRadius = 8
@@ -74,11 +75,12 @@ class DisplayViewController: UIViewController,UITableViewDataSource,UITableViewD
      do {
         profileArray.removeAll()
         let obj = try context.fetch(request)
-       
+             print("printing the obj",obj)
             profileArray.append(String(obj[0].empId))
            profileArray.append(obj[0].name!)
             profileArray.append(obj[0].address!)
             profileArray.append(String(obj[0].salary))
+          profileArray.append((obj[0].worksFor?.depName)!)
             print(profileArray)
             tableview.isHidden=false
             tableview.reloadData()

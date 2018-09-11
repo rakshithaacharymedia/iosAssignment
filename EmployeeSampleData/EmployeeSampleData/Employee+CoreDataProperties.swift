@@ -2,7 +2,7 @@
 //  Employee+CoreDataProperties.swift
 //  EmployeeSampleData
 //
-//  Created by rakshitha on 05/09/18.
+//  Created by rakshitha on 07/09/18.
 //  Copyright © 2018 rakshitha. All rights reserved.
 //
 //
@@ -21,5 +21,6 @@ extension Employee {
     @NSManaged public var empId: Int16
     @NSManaged public var name: String?
     @NSManaged public var salary: Int16
+    @NSManaged public var worksFor: Department?
 
 }

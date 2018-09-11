@@ -1,5 +1,5 @@
 //
-//  Employee+CoreDataClass.swift
+//  Department+CoreDataClass.swift
 //  EmployeeSampleData
 //
 //  Created by rakshitha on 07/09/18.
@@ -11,6 +11,6 @@ import Foundation
 import CoreData
 
 
-public class Employee: NSManagedObject {
+public class Department: NSManagedObject {
 
 }

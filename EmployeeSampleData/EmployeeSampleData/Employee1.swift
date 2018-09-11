@@ -14,14 +14,17 @@ class Employee1
     var name:String
     var address:String
     var salary:Int
+    var depname:String
     
-    init(id:Int,name:String,address:String,salary:Int) {
+    init(id:Int,name:String,address:String,salary:Int,depName:String) {
         
         
         self.id=id
         self.name=name
         self.address=address
         self.salary=salary
+        self.depname = depName
+        
         
     }
 }

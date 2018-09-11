@@ -1,21 +1,16 @@
 //
-//  SearchDisplayTableViewCell.swift
+//  DepTableViewCell.swift
 //  EmployeeSampleData
 //
-//  Created by rakshitha on 05/09/18.
+//  Created by rakshitha on 11/09/18.
 //  Copyright © 2018 rakshitha. All rights reserved.
 //
 
 import UIKit
 
-class SearchDisplayTableViewCell: UITableViewCell {
+class DepTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var depLabel: UILabel!
-    @IBOutlet weak var salarylabel: UILabel!
-    @IBOutlet weak var addresslabel: UILabel!
-    @IBOutlet weak var namelabel: UILabel!
-    @IBOutlet weak var idlabel: UILabel!
-  
+    @IBOutlet weak var deplabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

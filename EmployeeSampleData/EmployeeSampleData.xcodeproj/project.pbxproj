@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AC3BF46F213FC1830094185A /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF46D213FC1830094185A /* Employee+CoreDataClass.swift */; };
-		AC3BF470213FC1830094185A /* Employee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF46E213FC1830094185A /* Employee+CoreDataProperties.swift */; };
+		AC20D9132147D3280004E97C /* DisplayDepartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC20D9122147D3280004E97C /* DisplayDepartmentViewController.swift */; };
+		AC20D9152147D3E90004E97C /* DepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC20D9142147D3E90004E97C /* DepTableViewCell.swift */; };
 		AC3BF474213FE6020094185A /* DisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF473213FE6020094185A /* DisplayTableViewCell.swift */; };
 		AC3BF476214002D40094185A /* SearchforEmpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF475214002D40094185A /* SearchforEmpViewController.swift */; };
 		AC3BF4782140053B0094185A /* SearchDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF4772140053B0094185A /* SearchDisplayTableViewCell.swift */; };
 		AC3BF47A21400F5D0094185A /* DeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF47921400F5D0094185A /* DeleteViewController.swift */; };
 		AC3BF47E2140F33E0094185A /* Employee1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3BF47D2140F33E0094185A /* Employee1.swift */; };
+		AC7E0EE221426854005BCD90 /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E0EDE21426854005BCD90 /* Employee+CoreDataClass.swift */; };
+		AC7E0EE321426854005BCD90 /* Employee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E0EDF21426854005BCD90 /* Employee+CoreDataProperties.swift */; };
+		AC7E0EE421426854005BCD90 /* Department+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E0EE021426854005BCD90 /* Department+CoreDataClass.swift */; };
+		AC7E0EE521426854005BCD90 /* Department+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E0EE121426854005BCD90 /* Department+CoreDataProperties.swift */; };
+		AC7E0F0521478B12005BCD90 /* DepartmentDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E0F0421478B12005BCD90 /* DepartmentDatabase.swift */; };
 		AC929B4D213FAFA800B36FC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC929B4C213FAFA800B36FC3 /* AppDelegate.swift */; };
 		AC929B4F213FAFA800B36FC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC929B4E213FAFA800B36FC3 /* ViewController.swift */; };
 		AC929B52213FAFA800B36FC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC929B50213FAFA800B36FC3 /* Main.storyboard */; };
@@ -26,13 +31,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AC3BF46D213FC1830094185A /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
-		AC3BF46E213FC1830094185A /* Employee+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AC20D9122147D3280004E97C /* DisplayDepartmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDepartmentViewController.swift; sourceTree = "<group>"; };
+		AC20D9142147D3E90004E97C /* DepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepTableViewCell.swift; sourceTree = "<group>"; };
 		AC3BF473213FE6020094185A /* DisplayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTableViewCell.swift; sourceTree = "<group>"; };
 		AC3BF475214002D40094185A /* SearchforEmpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchforEmpViewController.swift; sourceTree = "<group>"; };
 		AC3BF4772140053B0094185A /* SearchDisplayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDisplayTableViewCell.swift; sourceTree = "<group>"; };
 		AC3BF47921400F5D0094185A /* DeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteViewController.swift; sourceTree = "<group>"; };
 		AC3BF47D2140F33E0094185A /* Employee1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee1.swift; sourceTree = "<group>"; };
+		AC7E0EDE21426854005BCD90 /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AC7E0EDF21426854005BCD90 /* Employee+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AC7E0EE021426854005BCD90 /* Department+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Department+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AC7E0EE121426854005BCD90 /* Department+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Department+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AC7E0F0421478B12005BCD90 /* DepartmentDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentDatabase.swift; sourceTree = "<group>"; };
 		AC929B49213FAFA800B36FC3 /* EmployeeSampleData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeSampleData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC929B4C213FAFA800B36FC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC929B4E213FAFA800B36FC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,14 +86,12 @@
 		AC929B4B213FAFA800B36FC3 /* EmployeeSampleData */ = {
 			isa = PBXGroup;
 			children = (
-				AC3BF46D213FC1830094185A /* Employee+CoreDataClass.swift */,
-				AC3BF46E213FC1830094185A /* Employee+CoreDataProperties.swift */,
-				AC929B72213FBD1100B36FC3 /* AddViewController.swift */,
-				AC929B71213FBD1000B36FC3 /* DisplayViewController.swift */,
-				AC3BF473213FE6020094185A /* DisplayTableViewCell.swift */,
 				AC929B4C213FAFA800B36FC3 /* AppDelegate.swift */,
 				AC929B4E213FAFA800B36FC3 /* ViewController.swift */,
 				AC929B74213FBD1100B36FC3 /* ViewControllerTableViewCell.swift */,
+				AC929B72213FBD1100B36FC3 /* AddViewController.swift */,
+				AC929B71213FBD1000B36FC3 /* DisplayViewController.swift */,
+				AC3BF473213FE6020094185A /* DisplayTableViewCell.swift */,
 				AC3BF47921400F5D0094185A /* DeleteViewController.swift */,
 				AC929B50213FAFA800B36FC3 /* Main.storyboard */,
 				AC3BF475214002D40094185A /* SearchforEmpViewController.swift */,
@@ -93,6 +101,13 @@
 				AC929B5B213FAFA900B36FC3 /* Info.plist */,
 				AC929B53213FAFA800B36FC3 /* EmployeeSampleData.xcdatamodeld */,
 				AC3BF47D2140F33E0094185A /* Employee1.swift */,
+				AC7E0EDE21426854005BCD90 /* Employee+CoreDataClass.swift */,
+				AC7E0EDF21426854005BCD90 /* Employee+CoreDataProperties.swift */,
+				AC7E0EE021426854005BCD90 /* Department+CoreDataClass.swift */,
+				AC7E0EE121426854005BCD90 /* Department+CoreDataProperties.swift */,
+				AC20D9122147D3280004E97C /* DisplayDepartmentViewController.swift */,
+				AC7E0F0421478B12005BCD90 /* DepartmentDatabase.swift */,
+				AC20D9142147D3E90004E97C /* DepTableViewCell.swift */,
 			);
 			path = EmployeeSampleData;
 			sourceTree = "<group>";
@@ -170,18 +185,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC3BF474213FE6020094185A /* DisplayTableViewCell.swift in Sources */,
-				AC3BF470213FC1830094185A /* Employee+CoreDataProperties.swift in Sources */,
+				AC20D9132147D3280004E97C /* DisplayDepartmentViewController.swift in Sources */,
 				AC929B4F213FAFA800B36FC3 /* ViewController.swift in Sources */,
+				AC20D9152147D3E90004E97C /* DepTableViewCell.swift in Sources */,
 				AC3BF4782140053B0094185A /* SearchDisplayTableViewCell.swift in Sources */,
 				AC929B76213FBD1100B36FC3 /* DisplayViewController.swift in Sources */,
-				AC3BF46F213FC1830094185A /* Employee+CoreDataClass.swift in Sources */,
 				AC929B77213FBD1100B36FC3 /* AddViewController.swift in Sources */,
 				AC3BF47A21400F5D0094185A /* DeleteViewController.swift in Sources */,
 				AC929B4D213FAFA800B36FC3 /* AppDelegate.swift in Sources */,
+				AC7E0EE321426854005BCD90 /* Employee+CoreDataProperties.swift in Sources */,
+				AC7E0EE221426854005BCD90 /* Employee+CoreDataClass.swift in Sources */,
 				AC3BF47E2140F33E0094185A /* Employee1.swift in Sources */,
+				AC7E0EE521426854005BCD90 /* Department+CoreDataProperties.swift in Sources */,
 				AC929B55213FAFA800B36FC3 /* EmployeeSampleData.xcdatamodeld in Sources */,
+				AC7E0F0521478B12005BCD90 /* DepartmentDatabase.swift in Sources */,
 				AC929B79213FBD1100B36FC3 /* ViewControllerTableViewCell.swift in Sources */,
 				AC3BF476214002D40094185A /* SearchforEmpViewController.swift in Sources */,
+				AC7E0EE421426854005BCD90 /* Department+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

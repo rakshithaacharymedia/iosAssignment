@@ -10,6 +10,7 @@ import UIKit
 
 class DepTableViewCell: UITableViewCell {
 
+   
     @IBOutlet weak var deplabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

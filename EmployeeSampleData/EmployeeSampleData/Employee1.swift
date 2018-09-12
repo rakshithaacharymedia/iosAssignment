@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 class Employee1
 {
+  
+
     var id:Int
     var name:String
     var address:String
@@ -27,4 +30,8 @@ class Employee1
         
         
     }
+
+    
+    
 }
+

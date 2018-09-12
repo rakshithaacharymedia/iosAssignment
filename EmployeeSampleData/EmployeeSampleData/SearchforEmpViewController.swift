@@ -9,7 +9,7 @@
 import UIKit
 import  CoreData
 
-class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UISearchBarDelegate{
+class SearchforEmpViewController: UIViewController{
 
     @IBOutlet weak var searchBar: UISearchBar!
        
@@ -22,13 +22,13 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
     var profileArray = [String]()
     var employeeArray=[Employee1]()
     var showdata = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.backgroundColor=UIColor.black
       
         tableview.isHidden=true
-       searchById.delegate=self
-        
+        searchById.delegate=self
         searchBar.showsScopeBar=true
         searchBar.scopeButtonTitles=["Name","Empid"]
         searchBar.selectedScopeButtonIndex=0
@@ -38,47 +38,7 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return employeeArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell=tableView.dequeueReusableCell(withIdentifier: "searchcell", for: indexPath) as! SearchDisplayTableViewCell
-       
-        
-            cell.idlabel.text=String(employeeArray[indexPath.row].id)
-            cell.namelabel.text=employeeArray[indexPath.row].name
-            cell.addresslabel.text=employeeArray[indexPath.row].address
-            cell.salarylabel.text=String(employeeArray[indexPath.row].salary)
-            cell.depLabel.text = employeeArray[indexPath.row].depname
-        
-        cell.backgroundColor=UIColor.black
-        return cell
-    }
-    
-    
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view=UIView()
-        if showdata{
-            let label = UILabel()
-            label.text = "Employee Details"
-            label.backgroundColor =  UIColor.green
-            label.textColor=UIColor.red
-            label.textAlignment = .center
-            view.addSubview(label)
-            return label
-        }
-        return view
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
+   
     
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -95,14 +55,7 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
         
     }
 
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-      //  let text:String?
-        search(text: searchText,index:searchBar.selectedScopeButtonIndex)
-        
-     
-        
-    }
+  
     
     func managedObjectContext() -> NSManagedObjectContext {
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -153,6 +106,60 @@ class SearchforEmpViewController: UIViewController,UITableViewDelegate,UITableVi
             
         }
     }
+}
+extension SearchforEmpViewController:UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //  let text:String?
+        search(text: searchText,index:searchBar.selectedScopeButtonIndex)
+        
+        
+        
+    }
+}
+extension SearchforEmpViewController:UITableViewDataSource,UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return employeeArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell=tableView.dequeueReusableCell(withIdentifier: "searchcell", for: indexPath) as! SearchDisplayTableViewCell
+        
+        
+        cell.idlabel.text=String(employeeArray[indexPath.row].id)
+        cell.namelabel.text=employeeArray[indexPath.row].name
+        cell.addresslabel.text=employeeArray[indexPath.row].address
+        cell.salarylabel.text=String(employeeArray[indexPath.row].salary)
+        cell.depLabel.text = employeeArray[indexPath.row].depname
+        
+        cell.backgroundColor=UIColor.black
+        return cell
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view=UIView()
+        if showdata{
+            let label = UILabel()
+            label.text = "Employee Details"
+            label.backgroundColor =  UIColor.green
+            label.textColor=UIColor.red
+            label.textAlignment = .center
+            view.addSubview(label)
+            return label
+        }
+        return view
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
 }
 
 

@@ -9,56 +9,51 @@
 import UIKit
 import CoreData
 
-class AddViewController: UIViewController {
-
-    
-    @IBOutlet weak var empsalary: UITextField!
+class AddViewController: UIViewController{
+     @IBOutlet weak var empsalary: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var empaddress: UITextField!
     @IBOutlet weak var empname: UITextField!
     @IBOutlet weak var empid: UITextField!
      let item = ["ios","android"]
     var selectedDep:String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.empid.becomeFirstResponder()
-
-        // Do any additional setup after loading the view.
+       // self.empid.becomeFirstResponder()
+       
+        
     }
 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func displayalert(myTitle:String,myMessage:String)
+    func displayAlert(myTitle:String,myMessage:String)
     {
         
         let alert = UIAlertController(title:myTitle, message: myMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         print(myTitle)
-        empaddress.text=""
-        empsalary.text=""
-        empid.text=""
-        empname.text=""
+       
     }
 
 
     @IBAction func insertButtonClicked(_ sender: Any) {
         let context = managedObjectContext()
         let entity = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
-        
-
         entity.name = empname.text
         entity.empId = Int16((self.empid.text! as NSString).integerValue)
         entity.salary = Int16((empsalary.text! as NSString).integerValue)
         entity.address = empaddress.text
- 
-        
-      entity.worksFor = DepartmentDataBase.dep.getid(depname: selectedDep!)
+        entity.worksFor = DepartmentDataBase.dep.getid(depname: selectedDep!)
         do {
             if (empname.text?.isEmpty)! || empid.text?.count==0 || empsalary.text?.count==0 || (empaddress.text?.isEmpty)!{
-                displayalert(myTitle: "Error", myMessage: "Fields Missing")
+                displayAlert(myTitle: "Error", myMessage: "Fields Missing")
                 
             }
             
@@ -66,13 +61,17 @@ class AddViewController: UIViewController {
             {
               try context.save()
                print("added")
-                displayalert(myTitle: "Success", myMessage: "User Registered")
+            displayAlert(myTitle: "Success", myMessage: "User Registered")
                 print(entity)
         }
    }
         catch  {
-            self.displayalert(myTitle: "Error", myMessage: "Couldnot Insert")
+          displayAlert(myTitle: "Error", myMessage: "Failed to insert")
         }
+        empaddress.text=""
+        empsalary.text=""
+        empid.text=""
+        empname.text=""
     }
 
     func managedObjectContext() -> NSManagedObjectContext {
@@ -82,6 +81,7 @@ class AddViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+   
     }
 
 

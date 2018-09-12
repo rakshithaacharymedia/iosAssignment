@@ -17,7 +17,6 @@ class DepartmentDataBase
     
     static let dep = DepartmentDataBase()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     func add(object:[String:String])
     {
       let department = NSEntityDescription.insertNewObject(forEntityName: "Department", into: context) as! Department
@@ -59,12 +58,10 @@ class DepartmentDataBase
     {
         var result = [Department]()
         let request = NSFetchRequest<Department>(entityName: "Department")
-       
-        
-        do
+       do
         {
             result = try context.fetch(request)
-            print("IM HERE",result)
+            
             
         }
         catch{
@@ -72,6 +69,40 @@ class DepartmentDataBase
             
         }
        return result
+    }
+    
+    
+
+    func getcount(name:String)->[Int16:String]{
+        let request = NSFetchRequest<Department>(entityName: "Department")
+        let pred = NSPredicate(format : "depName == %@",name)
+        request.predicate = pred
+        var empName = [Int16:String]()
+        do
+        {
+           let result = try context.fetch(request)
+          
+        
+            for item in result
+            {
+                let a = item.containsMany?.allObjects
+                print("no of emp",a?.count)
+                for relationData  in a!
+                {
+                    empName [((relationData as! Employee).empId )] =  (relationData as! Employee).name!
+                }
+            }
+            print(empName)
+         
+        }
+           
+        catch {
+            print("error")
+            
+        }
+        return empName
+        
+        
     }
 }
 

@@ -17,6 +17,10 @@ class DisplayTableViewCell: UITableViewCell {
     @IBOutlet weak var namelabel: UILabel!
     @IBOutlet weak var idlabel: UILabel!
 
+   
+      
+        
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

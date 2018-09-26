@@ -18,7 +18,7 @@ class OtherViewController: UIViewController {
     var delegate:display?
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+      //testing
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "socialmedia.png")!)
     }
 
